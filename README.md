@@ -1,4 +1,4 @@
-# Main prometheus collectors for basic http api server (node.js)
+# Prometheus collector (node.js)
 
 	- Collect main metrics such as request time and path, response code, time db reqest, time http 
 clietn  

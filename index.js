@@ -36,16 +36,16 @@ class Prometheus {
       labelNames: ["method", "path", "status"]
     });
 
-    this.apiRequests = new Summary({
-      name: "api",
-      help: "client api requests",
-      labelNames: ["requestName"]
-    });
-
     this.numErrors = new Counter({
       name: "numOfErrors",
       help: "Number of errors",
       labelNames: ["type"]
+    });
+
+    this.apiRequests = new Summary({
+      name: "api",
+      help: "client api requests",
+      labelNames: ["requestName"]
     });
 
     this.summaryByType = new Summary({
@@ -66,7 +66,7 @@ class Prometheus {
   };
 
   summaryByType = (typeEvent, mu, num) => {
-    if (!mu && num && num % 1 != 0) mu = "sec";
+    if (!mu && num && num % 1 !== 0) mu = "sec";
     if (!mu && !num) mu = "count";
 
     this.summaryByType.set({ type: typeEvent, measure: mu }, num || 1);
@@ -101,7 +101,7 @@ class Prometheus {
 
   /**
    * This function increments the counters that are executed on the response side of an invocation
-   * Currently it updates the responses summary miliseconds
+   * Currently it updates the responses summary
    */
   responseCounters = () =>
     ResponseTime((req, res, time) => {
@@ -147,9 +147,10 @@ export default {
       .use(prom.requestCounters)
       .use(prom.responseCounters())
       .use("/metrics", prom.injectMetricsRoute),
-
+  requestCounters: prom.requestCounters,
+  responseCounters: prom.responseCounters(),
+  injectMetricsRoute: prom.injectMetricsRoute,
   endDbRequestTimer: prom.endDbRequestTimer,
-  endApiRequestTimer: prom.endApiRequestTimer,
   incError: prom.incError,
   summaryByType: prom.summaryByType
 };

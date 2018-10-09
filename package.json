@@ -1,0 +1,23 @@
+{
+  "name": "promclient",
+  "version": "0.1.0",
+  "description": "main collectors for prometheus metrics",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://virt88.aetp.nn/doc2/lib/js/promclient"
+  },
+  "keywords": [
+    "prometheus",
+    "metrics"
+  ],
+  "author": "Egor Mikheev",
+  "license": "MIT",
+  "dependencies": {
+    "prom-client": "^11.1.3",
+    "response-time": "^2.3.2"
+  }
+}

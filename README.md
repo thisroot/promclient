@@ -1,8 +1,5 @@
 # Prometheus collector (node.js)
-
-	- Collect main metrics such as request time and path, response code, time db reqest, time http 
-clietn  
-equests
+	- Collect main metrics such as request time and path, response code, time db reqest, time http client requests
 	- Implemets express like middleware for auto collect http requests
 	- Implemets express like route for provide metrics prometheus agents 
 
